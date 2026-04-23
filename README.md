@@ -37,5 +37,6 @@ npm run dev
 
 The application will launch on your local host (typically http://localhost:5173).
 
-🧠 Design Philosophy
+## 🧠 Design Philosophy
+
 This tool was designed not just as a survey, but as an intuitive workflow. The UI utilizes soft, cinematic aesthetics and smooth transitions to make the end-of-day reflection feel like a calming ritual, validating the user's current cognitive state while gently guiding them toward agency and perspective-taking.
