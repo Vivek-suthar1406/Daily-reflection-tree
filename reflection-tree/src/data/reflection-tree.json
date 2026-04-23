@@ -1,0 +1,231 @@
+[
+  {
+    "id": "START",
+    "type": "start",
+    "text": "Good evening. Let's take a look at your day.",
+    "next": "A0_OPEN"
+  },
+  {
+    "id": "A0_OPEN",
+    "type": "question",
+    "text": "How would you describe the general momentum of your day in one phrase?",
+    "options": [
+      { "text": "Smooth and productive", "signal": "mood:positive" },
+      { "text": "A grind, but I pushed through", "signal": "mood:neutral" },
+      { "text": "Constantly interrupted", "signal": "mood:frustrated" },
+      { "text": "Draining and chaotic", "signal": "mood:negative" }
+    ],
+    "next": "A0_D1"
+  },
+  {
+    "id": "A0_D1",
+    "type": "decision",
+    "rules": [
+      { "condition": "mood:positive || mood:neutral", "next": "A1_Q1_GOOD" },
+      { "condition": "mood:frustrated || mood:negative", "next": "A1_Q1_BAD" }
+    ]
+  },
+  {
+    "id": "A1_Q1_GOOD",
+    "type": "question",
+    "text": "You felt today had decent momentum. When something went well today, what made it happen?",
+    "options": [
+      { "text": "I prepared well and executed.", "signal": "axis1:internal" },
+      { "text": "I adapted on the fly when things shifted.", "signal": "axis1:internal" },
+      { "text": "The circumstances just worked in my favor.", "signal": "axis1:external" },
+      { "text": "Other people did their parts on time.", "signal": "axis1:external" }
+    ],
+    "next": "A1_Q2"
+  },
+  {
+    "id": "A1_Q1_BAD",
+    "type": "question",
+    "text": "You mentioned today was tough. When things got difficult, what was your first instinct?",
+    "options": [
+      { "text": "Figure out what parts I could still control.", "signal": "axis1:internal" },
+      { "text": "Pivot and find a workaround.", "signal": "axis1:internal" },
+      { "text": "Feel frustrated by the roadblocks outside my control.", "signal": "axis1:external" },
+      { "text": "Wait for the situation to resolve or for someone to fix it.", "signal": "axis1:external" }
+    ],
+    "next": "A1_Q2"
+  },
+  {
+    "id": "A1_Q2",
+    "type": "question",
+    "text": "When you look at the bulk of the work you completed today, why did it get done?",
+    "options": [
+      { "text": "Because I intentionally prioritized it.", "signal": "axis1:internal" },
+      { "text": "Because I pushed through the resistance to finish it.", "signal": "axis1:internal" },
+      { "text": "Because deadlines or external pressures forced my hand.", "signal": "axis1:external" },
+      { "text": "Because the day was quiet enough to allow me to do it.", "signal": "axis1:external" }
+    ],
+    "next": "A1_Q3"
+  },
+  {
+    "id": "A1_Q3",
+    "type": "question",
+    "text": "Think about the outcome of your most important task today. How much of that outcome was due to your direct effort versus external factors?",
+    "options": [
+      { "text": "Mostly my own effort and planning.", "signal": "axis1:internal" },
+      { "text": "I drove it, but circumstances helped.", "signal": "axis1:internal" },
+      { "text": "I did my part, but external factors dictated the rest.", "signal": "axis1:external" },
+      { "text": "The outcome was largely decided by things outside my control.", "signal": "axis1:external" }
+    ],
+    "next": "A1_D1"
+  },
+  {
+    "id": "A1_D1",
+    "type": "decision",
+    "rules": [
+      { "condition": "axis1:internal >= axis1:external", "next": "A1_REF_INT" },
+      { "condition": "axis1:internal < axis1:external", "next": "A1_REF_EXT" }
+    ]
+  },
+  {
+    "id": "A1_REF_INT",
+    "type": "reflection",
+    "text": "It sounds like you kept your hands on the steering wheel today. Even when things went off script, you focused on your own agency. That's a heavy lift, but it means you aren't waiting on the world to cooperate.",
+    "next": "BRIDGE_1_2"
+  },
+  {
+    "id": "A1_REF_EXT",
+    "type": "reflection",
+    "text": "It sounds like today threw some friction your way that felt out of your hands. It's draining when circumstances dictate your pace. But hidden in those moments is usually a tiny sliver of choice—how you respond. Let's hold onto that thought.",
+    "next": "BRIDGE_1_2"
+  },
+  {
+    "id": "BRIDGE_1_2",
+    "type": "bridge",
+    "text": "We've looked at how you handled the unexpected. Now, let's look at the energy you put into the room today.",
+    "next": "A2_Q1"
+  },
+  {
+    "id": "A2_Q1",
+    "type": "question",
+    "text": "Think about an interaction today where someone needed your help, input, or time. How did you approach it?",
+    "options": [
+      { "text": "I stepped in and helped them move forward, even if it wasn't my job.", "signal": "axis2:contribution" },
+      { "text": "I shared what I knew because I wanted the work to succeed.", "signal": "axis2:contribution" },
+      { "text": "I helped, but I felt slightly resentful that it distracted from my work.", "signal": "axis2:entitlement" },
+      { "text": "I minimized my involvement because people should figure things out.", "signal": "axis2:entitlement" }
+    ],
+    "next": "A2_Q2"
+  },
+  {
+    "id": "A2_Q2",
+    "type": "question",
+    "text": "When you completed a difficult or tedious task today, where did your mind go right after?",
+    "options": [
+      { "text": "'Who else needs to know about this so the team can keep moving?'", "signal": "axis2:contribution" },
+      { "text": "'What is the next most useful thing I can tackle?'", "signal": "axis2:contribution" },
+      { "text": "'I hope someone actually notices how hard I worked on that.'", "signal": "axis2:entitlement" },
+      { "text": "'I've done my share for today, I deserve to be left alone.'", "signal": "axis2:entitlement" }
+    ],
+    "next": "A2_Q3"
+  },
+  {
+    "id": "A2_Q3",
+    "type": "question",
+    "text": "If you had an extra hour of free time at work today, what would have been your instinct to do with it?",
+    "options": [
+      { "text": "Look for a teammate who was swamped and help them out.", "signal": "axis2:contribution" },
+      { "text": "Document or organize something that helps the team long-term.", "signal": "axis2:contribution" },
+      { "text": "Catch up on my own backlog so I don't fall behind.", "signal": "axis2:entitlement" },
+      { "text": "Take a well-deserved break; I've earned it.", "signal": "axis2:entitlement" }
+    ],
+    "next": "A2_D1"
+  },
+  {
+    "id": "A2_D1",
+    "type": "decision",
+    "rules": [
+      { "condition": "axis2:contribution >= axis2:entitlement", "next": "A2_REF_CONTRIB" },
+      { "condition": "axis2:contribution < axis2:entitlement", "next": "A2_REF_ENTITLE" }
+    ]
+  },
+  {
+    "id": "A2_REF_CONTRIB",
+    "type": "reflection",
+    "text": "Your focus today was on giving value. You weren't just checking boxes to protect yourself; you were actively contributing to the people and the work around you. That kind of unprompted generosity builds a lot of trust.",
+    "next": "BRIDGE_2_3"
+  },
+  {
+    "id": "A2_REF_ENTITLE",
+    "type": "reflection",
+    "text": "It sounds like you were protecting your energy today, perhaps feeling like the environment was taking more from you than it gave back. It's natural to want fairness, but tracking what we are 'owed' can become an exhausting ledger to keep.",
+    "next": "BRIDGE_2_3"
+  },
+  {
+    "id": "BRIDGE_2_3",
+    "type": "bridge",
+    "text": "We've looked at your agency and your contribution. Finally, let's widen the lens and look at who was in your line of sight today.",
+    "next": "A3_Q1"
+  },
+  {
+    "id": "A3_Q1",
+    "type": "question",
+    "text": "When you were navigating your biggest challenge or frustration today, whose experience were you prioritizing?",
+    "options": [
+      { "text": "The end-user, customer, or the broader mission.", "signal": "axis3:altrocentric" },
+      { "text": "My immediate team and how the challenge was affecting us.", "signal": "axis3:altrocentric" },
+      { "text": "My own workload and how to get through the roadblock efficiently.", "signal": "axis3:selfcentric" },
+      { "text": "My own stress levels and trying to protect myself from the fallout.", "signal": "axis3:selfcentric" }
+    ],
+    "next": "A3_Q2"
+  },
+  {
+    "id": "A3_Q2",
+    "type": "question",
+    "text": "When a meeting or discussion got off track today, what was your internal monologue?",
+    "options": [
+      { "text": "'How is this impacting our overarching goal?'", "signal": "axis3:altrocentric" },
+      { "text": "'How can I steer this back so the team doesn't waste time?'", "signal": "axis3:altrocentric" },
+      { "text": "'This is wasting my time and keeping me from my work.'", "signal": "axis3:selfcentric" },
+      { "text": "'I'm checking out until this is over.'", "signal": "axis3:selfcentric" }
+    ],
+    "next": "A3_Q3"
+  },
+  {
+    "id": "A3_Q3",
+    "type": "question",
+    "text": "As you wrap up the day and look back, what is the primary thought occupying your mind?",
+    "options": [
+      { "text": "'I hope the effort I put in today makes things easier for someone tomorrow.'", "signal": "axis3:altrocentric" },
+      { "text": "'I'm glad we managed to solve that problem together.'", "signal": "axis3:altrocentric" },
+      { "text": "'I'm relieved I managed to finish my part of the work.'", "signal": "axis3:selfcentric" },
+      { "text": "'I'm stressed about how much is still on my plate.'", "signal": "axis3:selfcentric" }
+    ],
+    "next": "A3_D1"
+  },
+  {
+    "id": "A3_D1",
+    "type": "decision",
+    "rules": [
+      { "condition": "axis3:altrocentric >= axis3:selfcentric", "next": "A3_REF_ALTRO" },
+      { "condition": "axis3:altrocentric < axis3:selfcentric", "next": "A3_REF_SELF" }
+    ]
+  },
+  {
+    "id": "A3_REF_ALTRO",
+    "type": "reflection",
+    "text": "Your radius of concern today extended well beyond yourself. By framing your challenges around the team or the end goal, you anchored yourself in something larger. That perspective makes daily friction much easier to carry.",
+    "next": "SUMMARY"
+  },
+  {
+    "id": "A3_REF_SELF",
+    "type": "reflection",
+    "text": "It sounds like your focus was pulled inward today, mostly centered on your own stress and to-do list. That's a natural survival mechanism on tough days. Remember, zooming out to see how your work connects to others can relieve the pressure.",
+    "next": "SUMMARY"
+  },
+  {
+    "id": "SUMMARY",
+    "type": "summary",
+    "text": "Based on your reflections, today you leaned towards an {axis1.dominant} locus of control, an orientation of {axis2.dominant}, and had a {axis3.dominant} radius of concern. Rest up, and we will see you tomorrow.",
+    "next": "END"
+  },
+  {
+    "id": "END",
+    "type": "end",
+    "text": "Session Complete."
+  }
+]
