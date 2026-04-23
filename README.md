@@ -25,12 +25,12 @@ git clone https://github.com/Vivek-suthar1406/Daily-reflection-tree.git
 cd Daily-reflection-tree/reflection-tree
 ```
 
-2. Install the dependencies:
+**2. Install the dependencies:**
 ```bash
 npm install
 ```
 
-3. Start the development server:
+**3. Start the development server:**
 ```bash
 npm run dev
 ```
