@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     %% Node Styling
     classDef startEnd fill:#111,stroke:#333,stroke-width:2px,color:#fff;
@@ -52,4 +53,4 @@ graph TD
     A3_REF_ALTRO --> SUMMARY[SUMMARY: Final synthesis]:::startEnd
     A3_REF_SELF --> SUMMARY
     
-    SUMMARY --> END([END: Session Complete]):::startEnd
+SUMMARY --> END([END: Session Complete]):::startEnd
