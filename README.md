@@ -19,17 +19,22 @@ I built a deterministic, client-side web application using React (Vite) and Tail
 To run the agent locally:
 
 **1. Clone the repository and navigate into the app folder:**
+
 ```bash
-git clone [https://github.com/Vivek-suthar1406/Daily-reflection-tree.git](https://github.com/Vivek-suthar1406/Daily-reflection-tree.git)
+git clone https://github.com/Vivek-suthar1406/Daily-reflection-tree.git
 cd Daily-reflection-tree/reflection-tree
+```
+
 2. Install the dependencies:
-
-Bash
+```bash
 npm install
-3. Start the development server:
+```
 
-Bash
+3. Start the development server:
+```bash
 npm run dev
+```
+
 The application will launch on your local host (typically http://localhost:5173).
 
 🧠 Design Philosophy
